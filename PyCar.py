@@ -3,6 +3,7 @@ import math
 import sys
 import neat
 import colors
+import os
 
 screen_width = 1500
 screen_height = 800
@@ -260,11 +261,20 @@ if __name__ == "__main__":
 
     # Create core evolution algorithm class
     p = neat.Population(config)
+    # Get configuration of the check point
+    #p = neat.Checkpointer.restore_checkpoint()
 
-    # Add reporter for fancy statistical result
+    # Statistical result
     p.add_reporter(neat.StdOutReporter(True))
     stats = neat.StatisticsReporter()
     p.add_reporter(stats)
+
+    #Check Points
+    p.add_reporter(neat.Checkpointer(10))
+    
+
+
+
 
     # Run NEAT
     p.run(run_car, 1000)
