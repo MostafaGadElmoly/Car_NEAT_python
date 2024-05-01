@@ -1,12 +1,14 @@
 import pygame
-import os
 import math
 import sys
-import random
 import neat
+import colors
 
 screen_width = 1500
 screen_height = 800
+table_width = 400
+table_height = 200
+
 generation = 0
 
 car_size_X = 100
@@ -132,10 +134,7 @@ class Car:
 
     # Calculate Reward
     def get_reward(self):
-        distance_reward = self.distance / 50.0
-        speed_reward = self.speed / 10.0
-        total_reward = distance_reward + speed_reward
-        return total_reward
+        return self.distance / (car_size_X / 2)
 
     def rot_center(self, image, angle):
         orig_rect = image.get_rect()
@@ -230,6 +229,25 @@ def run_car(genomes, config):
 
         pygame.display.flip()
         clock.tick(0)
+
+def draw_info_table(info_window, generation, remain_cars, time_passed, cars_not_made_it):
+    info_window.fill(colors.white)
+
+    # Render text
+    font = pygame.font.SysFont("Arial", 24)
+    text_generation = font.render("Generation: " + str(generation), True, colors.black)
+    text_remain_cars = font.render("Cars Alive: " + str(remain_cars), True, colors.black)
+    text_time_passed = font.render("Time Passed: " + str(time_passed), True, colors.black)
+    text_cars_not_made_it = font.render("Cars Didn't Make It: " + str(cars_not_made_it), True, colors.black)
+
+    # Blit text to info window
+    info_window.blit(text_generation, (20, 20))
+    info_window.blit(text_remain_cars, (20, 50))
+    info_window.blit(text_time_passed, (20, 80))
+    info_window.blit(text_cars_not_made_it, (20, 110))
+
+    # Update the display
+    pygame.display.flip()
 
 if __name__ == "__main__":
     # Set configuration file
