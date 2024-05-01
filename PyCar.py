@@ -12,8 +12,8 @@ table_height = 200
 
 generation = 0
 
-car_size_X = 100
-car_size_Y = 100
+car_size_X = 80
+car_size_Y = 80
 
 border_color = (255, 255, 255, 255)
 
@@ -77,7 +77,7 @@ class Car:
         # Only When Having 4 Output Nodes With Speed Up and Down, This Can be figured in the Config File.
 
         if not self.speed_set:
-            self.speed = 15
+            self.speed = 10
             self.speed_set = True
 
         # check position
@@ -135,7 +135,10 @@ class Car:
 
     # Calculate Reward
     def get_reward(self):
-        return self.distance / (car_size_X / 2)
+        distance_reward = self.distance / 50.0  # Reward based on distance traveled
+        speed_reward = self.speed / 5.0  # Reward based on speed (adjust scaling factor as needed)
+        total_reward = distance_reward + speed_reward  # Combine rewards
+        return total_reward
 
     def rot_center(self, image, angle):
         orig_rect = image.get_rect()
@@ -168,7 +171,7 @@ def run_car(genomes, config):
     clock = pygame.time.Clock()
     generation_font = pygame.font.SysFont("Arial", 40)
     font = pygame.font.SysFont("Arial", 20)
-    map = pygame.image.load('map.png')
+    map = pygame.image.load('map_n.png')
 
     # Main loop
     global generation
@@ -260,9 +263,9 @@ if __name__ == "__main__":
                                 config_path)
 
     # Create core evolution algorithm class
-    p = neat.Population(config)
+    #p = neat.Population(config)
     # Get configuration of the check point
-    #p = neat.Checkpointer.restore_checkpoint()
+    p = neat.Checkpointer.restore_checkpoint("neat-checkpoint-139")
 
     # Statistical result
     p.add_reporter(neat.StdOutReporter(True))
@@ -271,10 +274,6 @@ if __name__ == "__main__":
 
     #Check Points
     p.add_reporter(neat.Checkpointer(10))
-    
-
-
-
 
     # Run NEAT
     p.run(run_car, 1000)
