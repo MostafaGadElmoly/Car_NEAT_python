@@ -132,7 +132,10 @@ class Car:
 
     # Calculate Reward
     def get_reward(self):
-        return self.distance / (car_size_X / 2)
+        distance_reward = self.distance / 50.0
+        speed_reward = self.speed / 10.0
+        total_reward = distance_reward + speed_reward
+        return total_reward
 
     def rot_center(self, image, angle):
         orig_rect = image.get_rect()
