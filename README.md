@@ -20,6 +20,6 @@ To run PyCar, you need to install the required Python libraries. You can install
 
 
 
-##Creadits
+## Creadits
 The code is highlt influinced by CheasyAi. 
 The original information about NEAT https://neat-python.readthedocs.io/en/latest/xor_example.html
