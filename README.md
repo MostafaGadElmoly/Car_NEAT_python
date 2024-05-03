@@ -1,4 +1,4 @@
-# PyCar Simulation
+# NEAT Simulation
 
 ## Overview
 PyCar is a simulation application that uses the Pygame library to control a car in a simulated environment. The application features collision detection, a radar system for navigation, and NEAT (NeuroEvolution of Augmenting Topologies) for learning optimal driving strategies.
@@ -20,3 +20,7 @@ To run PyCar, you need to install the required Python libraries. You can install
 
 ```bash
 pip install pygame neat-python
+
+##Creadits
+The code is highlt influinced by CheasyAi. 
+The original information about NEAT https://neat-python.readthedocs.io/en/latest/xor_example.html
