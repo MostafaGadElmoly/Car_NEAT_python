@@ -171,7 +171,7 @@ def run_car(genomes, config):
     clock = pygame.time.Clock()
     generation_font = pygame.font.SysFont("Arial", 40)
     font = pygame.font.SysFont("Arial", 20)
-    map = pygame.image.load('map_n.png')
+    map = pygame.image.load('map2.png')
 
     # Main loop
     global generation
@@ -221,14 +221,14 @@ def run_car(genomes, config):
             if car.get_alive():
                 car.draw(screen)
 
-        text = generation_font.render("Generation : " + str(generation), True, (255, 255, 0))
+        text = generation_font.render("Generation : " + str(generation), True, (0, 0, 0))
         text_rect = text.get_rect()
-        text_rect.center = (screen_width / 2, 100)
+        text_rect.center = (screen_width / 2, 50)
         screen.blit(text, text_rect)
 
         text = font.render("remain cars : " + str(remain_cars), True, (0, 0, 0))
         text_rect = text.get_rect()
-        text_rect.center = (screen_width / 2, 200)
+        text_rect.center = (screen_width / 2 +500, 50)
         screen.blit(text, text_rect)
 
         pygame.display.flip()
