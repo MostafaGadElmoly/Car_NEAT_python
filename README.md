@@ -18,8 +18,7 @@ PyCar is a simulation application that uses the Pygame library to control a car 
 ## Installation
 To run PyCar, you need to install the required Python libraries. You can install them using pip:
 
-```bash
-pip install pygame neat-python
+
 
 ##Creadits
 The code is highlt influinced by CheasyAi. 
